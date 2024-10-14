@@ -5,6 +5,7 @@ name: Go
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
 
@@ -31,6 +32,7 @@ jobs:
           go mod tidy
           GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-w -s" -v
           GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-w -s" -v
+          tree
     
           
         # - name: Build
@@ -43,8 +45,8 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@main
         with:
-          name: webdav.zip
-          path: webdav
+          name: spp.zip
+          path: spp*
 
       - name: Test
         run: go test -v ./...
